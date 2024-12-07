@@ -14,8 +14,6 @@ class Waste2GreenApp extends StatelessWidget {
   }
 }
 
-
-
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -28,8 +26,8 @@ class _SplashPageState extends State<SplashPage> {
     // Redirection après 2 secondes
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(
-        context,  // Pas besoin de parenthèses
-        MaterialPageRoute(builder: (context) => HomePage()), // Redirection vers HomePage
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     });
   }
@@ -37,7 +35,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Color(0xFF6A994E),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,9 +60,6 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 }
-
-
-
 
 class HomePage extends StatelessWidget {
   @override
@@ -94,16 +89,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 48,
                 fontWeight: FontWeight.bold,
-                color: Colors.green,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              '"Earth loves second chances."',
-              style: TextStyle(
-                fontSize: 20,
-                fontStyle: FontStyle.italic,
-                color: Colors.black54,
+                color: Color(0xFF6A994E),
               ),
             ),
             SizedBox(height: 20),
@@ -115,7 +101,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Color(0xFF6A994E),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
@@ -141,7 +127,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     'Sign Up',
                     style: TextStyle(
-                      color: Colors.green,
+                      color: Color(0xFF6A994E),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -154,10 +140,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -167,7 +149,6 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -232,27 +213,32 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // Bouton de connexion
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DashboardPage()), // Assurez-vous que DashboardPage est importée
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+              // Bouton de connexion
+              SizedBox(
+                width: double.infinity, // Prend toute la largeur disponible comme les TextFormFields
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DashboardPage()), // Assurez-vous que DashboardPage est importée
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF6A994E),
+                    padding: const EdgeInsets.symmetric(vertical: 15), // Garde une hauteur confortable
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text(
+                    'Log In',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
-                child: const Text(
-                  'Log In',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
               ),
+
               const SizedBox(height: 3), // Espacement avant le texte "Forgot password?"
               // Le texte "Forgot password?"
               TextButton(
@@ -303,10 +289,10 @@ class SignUpPage extends StatelessWidget {
               // Texte principal
               Text(
                 'Sign up',
-                style: TextStyle(
+                style:  TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color:Color(0xFF6A994E),
                 ),
               ),
               Text(
@@ -344,23 +330,28 @@ class SignUpPage extends StatelessWidget {
               ),
               SizedBox(height: 30),
               // Bouton "Sign Up"
-              ElevatedButton(
-                onPressed: () {
-                  // Action lors de l'inscription
-                  // Ajouter la logique pour inscrire l'utilisateur ici
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green, // Couleur du bouton
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              // Bouton "Sign Up"
+              SizedBox(
+                width: double.infinity, // Prend toute la largeur disponible comme les champs de texte
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Action lors de l'inscription
+                    // Ajouter la logique pour inscrire l'utilisateur ici
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF6A994E) , // Couleur du bouton
+                    padding: EdgeInsets.symmetric(vertical: 15), // Garde la hauteur inchangée
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
               ),
+
             ],
           ),
         ),
@@ -390,8 +381,8 @@ class DashboardPage extends StatelessWidget {
               children: [
                 Text(
                   'Waste2Green',
-                  style: TextStyle(
-                    color: Colors.green,
+                  style:  TextStyle(
+                    color:  Color(0xFF6A994E),
                     fontSize: 50,  // Taille du texte agrandie
                     fontWeight: FontWeight.bold,
                   ),
@@ -399,7 +390,7 @@ class DashboardPage extends StatelessWidget {
                 SizedBox(height: 6),  // Espacement entre les textes
                 Text(
                   '"Earth loves second chances"',
-                  style: TextStyle(
+                  style:const TextStyle(
                     fontSize: 20,  // Taille du texte agrandie
                     color: Colors.black,
                   ),
@@ -416,7 +407,7 @@ class DashboardPage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => BuyPage()),
                 );
               },
-              icon: Icon(Icons.shopping_cart),
+              icon: Icon(Icons.shopping_cart, color: Colors.white,),
               label: Text(
                 'Buy',
                 style: TextStyle(
@@ -425,9 +416,9 @@ class DashboardPage extends StatelessWidget {
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor:  Color(0xFF6A994E),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
@@ -441,7 +432,7 @@ class DashboardPage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => SellPage()),
                 );
               },
-              icon: Icon(Icons.sell),
+              icon: Icon(Icons.add, color: Colors.white,),
               label: Text(
                 'Sell',
                 style: TextStyle(
@@ -450,9 +441,9 @@ class DashboardPage extends StatelessWidget {
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Color(0xFF6A994E),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
@@ -475,7 +466,6 @@ class ForgotPasswordPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forgot Password'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -526,28 +516,32 @@ class ForgotPasswordPage extends StatelessWidget {
               const SizedBox(height: 20),
 
               // Bouton d'envoi
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Logique de réinitialisation du mot de passe ici
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Password reset email sent')),
-                    );
-                    Navigator.pop(context); // Retour à la page précédente
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+              SizedBox(
+                width: double.infinity, // Prend toute la largeur disponible
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      // Logique de réinitialisation du mot de passe ici
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Password reset email sent')),
+                      );
+                      Navigator.pop(context); // Retour à la page précédente
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:  Color(0xFF6A994E),
+                    padding: const EdgeInsets.symmetric(vertical: 15), // Ajuste uniquement la hauteur
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: const Text(
+                    'Send Reset Link',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
-                child: const Text(
-                  'Send Reset Link',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
               ),
+
             ],
           ),
         ),
@@ -556,25 +550,6 @@ class ForgotPasswordPage extends StatelessWidget {
   }
 }
 
-
-
-class BuyPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Buy Page'),
-      ),
-      body: Center(
-        child: Text(
-          'Welcome to the Buy Page!',
-
-        ),
-      ),
-    );
-  }
-}
 
 
 
@@ -618,14 +593,15 @@ class _SellPageState extends State<SellPage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Bouton "I Sell!" stylisé
-            Center(
+            SizedBox(
+              width: double.infinity, // Même largeur pour tous les éléments
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(20),
+                decoration:BoxDecoration(
+                  color:Color(0xFF6A994E),
+                  borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black26,
@@ -634,13 +610,15 @@ class _SellPageState extends State<SellPage> {
                     ),
                   ],
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 90, vertical: 10),
-                child: Text(
-                  "I Sell!",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Center(
+                  child: Text(
+                    "I Sell!",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -673,9 +651,12 @@ class _SellPageState extends State<SellPage> {
             SizedBox(height: 20.0),
 
             // Titre de section
-            Text(
-              "More Informations:",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                "More Informations:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
             SizedBox(height: 20.0),
 
@@ -696,18 +677,26 @@ class _SellPageState extends State<SellPage> {
                   SizedBox(height: 30.0),
 
                   // Bouton pour soumettre les données
-                  ElevatedButton(
-                    onPressed: _submitData,
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                  SizedBox(
+                    width: double.infinity, // Uniformise la largeur
+                    child: ElevatedButton(
+                      onPressed: _submitData,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      "Submit",
-                      style: TextStyle(
-                        color: Colors.green,
+                      child: Text(
+                        "Submit",
+                        style: const TextStyle(
+                          color: Color(0xFF6A994E),
+                          fontSize: 20, // Taille de la police
+                          fontWeight: FontWeight.bold, // Texte en gras
+                          letterSpacing: 1.2, // Espacement entre les lettres
+                          height: 1.5, // Hauteur de ligne
+                          fontFamily: 'Arial', // Police (optionnel, vous pouvez changer par une autre police disponible)
+                        ),
                       ),
                     ),
                   ),
@@ -722,32 +711,377 @@ class _SellPageState extends State<SellPage> {
 
   // Widget pour construire un champ de formulaire avec des styles
   Widget _buildTextField(String label, TextEditingController controller, {bool isNumeric = false}) {
+    return SizedBox(
+      width: double.infinity, // Assure une largeur uniforme pour les champs
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: TextFormField(
+          controller: controller,
+          keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
+          decoration: InputDecoration(
+            labelText: label,
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter $label";
+            }
+            return null;
+          },
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+class BuyPage extends StatelessWidget {
+  final List<Map<String, String>> products = [
+    {"name": "Peels and Food Scraps", "weight": "3kg", "price": "5dt"},
+    {"name": "Coffee Waste", "weight": "2kg", "price": "4dt"},
+    {"name": "Meat and Seafood Waste", "weight": "1kg", "price": "3dt"},
+    {"name": "Cooked Food Waste", "weight": "5kg", "price": "15dt"},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.green[50],
+          child: ListView(
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color:Colors.green[50] ,
+                ),
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Color(0xFF6A994E),
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.home, color: Color(0xFF6A994E)),
+                title: Text('Home', style: TextStyle(fontSize: 18)),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => BuyPage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.shopping_cart, color: Color(0xFF6A994E)),
+                title: Text('Cart', style: TextStyle(fontSize: 18)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartPage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.person, color: Color(0xFF6A994E)),
+                title: Text('Profile', style: TextStyle(fontSize: 18)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF6A994E),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+
+
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.search, color: Colors.black),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    "Products",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16),
+                  Flexible(
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 16,
+                        childAspectRatio: 0.8,
+                      ),
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        final product = products[index];
+                        // Déterminer le chemin de l'image en fonction du nom du produit
+                        String imagePath;
+                        switch (product['name']) {
+                          case "Peels and Food Scraps":
+                            imagePath = 'assets/image_3.jpg';
+                            break;
+                          case "Coffee Waste":
+                            imagePath = 'assets/image_6.jpg';
+                            break;
+                          case "Meat and Seafood Waste":
+                            imagePath = 'assets/image_5.jpg';
+                            break;
+                          case "Cooked Food Waste":
+                            imagePath = 'assets/image_4.jpg';
+                            break;
+                          default:
+                            imagePath = 'assets/default_image.jpg'; // Valeur par défaut
+                        }
+                        return ProductCard(
+                          name: product['name']!,
+                          weight: product['weight']!,
+                          price: product['price']!,
+                          imagePath: imagePath, // Passez le chemin de l'image
+                          onAdd: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CartPage(),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Footer avec les icônes
+          Container(
+            decoration: BoxDecoration(
+              color: Color(0xFF6A994E),
+              borderRadius: BorderRadius.circular(8), // Ajoute des coins arrondis
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26, // Couleur de l'ombre
+                  blurRadius: 8, // Intensité du flou
+                  offset: Offset(0, 4), // Décalage de l'ombre
+                ),
+              ],
+            ),
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.home, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => BuyPage()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.star, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Rewards()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.add, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SellPage()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.person, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.shopping_cart, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CartPage()),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
+}
+
+class ProductCard extends StatelessWidget {
+  final String name;
+  final String weight;
+  final String price;
+  final String imagePath; // Image path ajouté ici
+  final VoidCallback onAdd;
+
+  ProductCard({
+    required this.name,
+    required this.weight,
+    required this.price,
+    required this.imagePath, // Assurez-vous que cette variable est reçue
+    required this.onAdd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 5,
-            offset: Offset(0, 3),
+        color:Color(0xFFF2E8CF),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.green, width: 1),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              imagePath, // Utilisation de la variable imagePath
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              name,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 8, // Remplacez 16 par la taille de texte que vous souhaitez
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+          ),
+          Text("$weight - $price"),
+          IconButton(
+            icon: Icon(Icons.add, color: Color(0xFFA7C957)),
+            onPressed: onAdd, // Appel de l'action
           ),
         ],
       ),
-      child: TextFormField(
-        controller: controller,
-        keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
-        decoration: InputDecoration(
-          labelText: label,
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Please enter $label";
-          }
-          return null;
-        },
+    );
+  }
+}
+class CartPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cart'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Text("Cart is empty!"),
+      ),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Text("Welcome to the Profile Page!"),
+      ),
+    );
+  }
+}
+
+class Rewards extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Rewards'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Text("Welcome to the Rewards Page!"),
       ),
     );
   }
