@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'CartPage.dart';
-import 'ProfilePage.dart';
-import  'Rewards.dart';
+import 'my_cart.dart';
+import 'profile_page.dart';
+import 'rewards_page.dart';
 import 'SellPage.dart';
-
 
 class BuyPage extends StatelessWidget {
   final List<Map<String, String>> products = [
@@ -18,15 +16,21 @@ class BuyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFF2E8CF),
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.menu),
+            icon: Icon(Icons.menu, color: Color(0xffbc4749)),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications, color: Color(0xffbc4749)),
+            onPressed: () {},
+          ),
+        ],
       ),
       drawer: Drawer(
         child: Container(
@@ -35,7 +39,7 @@ class BuyPage extends StatelessWidget {
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color:Colors.green[50] ,
+                  color: Colors.green[50],
                 ),
                 child: Text(
                   'Menu',
@@ -79,6 +83,7 @@ class BuyPage extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: const Color(0xFFF2E8CF),
       body: Column(
         children: [
           Expanded(
@@ -90,22 +95,29 @@ class BuyPage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
-                      color: Color(0xFF6A994E),
-                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: [
                         Expanded(
                           child: TextField(
-
-
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintStyle: TextStyle(color: Colors.black),
+                              hintText: 'Search for products',
+                              hintStyle: TextStyle(color: Colors.grey[600]),
                             ),
                           ),
                         ),
-                        Icon(Icons.search, color: Colors.black),
+                        Icon(Icons.search, color: Colors.grey[600]),
                       ],
                     ),
                   ),
@@ -115,7 +127,7 @@ class BuyPage extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16),
-                  Flexible(
+                  Expanded(
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -126,7 +138,6 @@ class BuyPage extends StatelessWidget {
                       itemCount: products.length,
                       itemBuilder: (context, index) {
                         final product = products[index];
-                        // Déterminer le chemin de l'image en fonction du nom du produit
                         String imagePath;
                         switch (product['name']) {
                           case "Peels and Food Scraps":
@@ -142,13 +153,13 @@ class BuyPage extends StatelessWidget {
                             imagePath = 'assets/image_4.jpg';
                             break;
                           default:
-                            imagePath = 'assets/default_image.jpg'; // Valeur par défaut
+                            imagePath = 'assets/default_image.jpg';
                         }
                         return ProductCard(
                           name: product['name']!,
                           weight: product['weight']!,
                           price: product['price']!,
-                          imagePath: imagePath, // Passez le chemin de l'image
+                          imagePath: imagePath,
                           onAdd: () {
                             Navigator.push(
                               context,
@@ -165,91 +176,68 @@ class BuyPage extends StatelessWidget {
               ),
             ),
           ),
-          // Footer avec les icônes
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xFF6A994E),
-              borderRadius: BorderRadius.circular(8), // Ajoute des coins arrondis
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26, // Couleur de l'ombre
-                  blurRadius: 8, // Intensité du flou
-                  offset: Offset(0, 4), // Décalage de l'ombre
-                ),
-              ],
-            ),
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.home, color: Colors.white),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => BuyPage()),
-                    );
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.star, color: Colors.white),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Rewards()),
-                    );
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.add, color: Colors.white),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SellPage()),
-                    );
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.person, color: Colors.white),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
-                    );
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.shopping_cart, color: Colors.white),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CartPage()),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-
+          _buildFooter(context),
         ],
+      ),
+    );
+  }
+
+  Widget _buildFooter(BuildContext context) {
+    return Center(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: 70,
+        decoration: const BoxDecoration(
+          color: Color(0xFF6A994E),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildFooterIcon(Icons.home, const Color(0xffbc4749), '/home', context),
+            _buildFooterIcon(Icons.star, const Color(0xffbc4749), '/rewards', context),
+            _buildFooterIcon(Icons.add, const Color(0xffbc4749), '/sell', context),
+            _buildFooterIcon(Icons.shopping_cart, const Color(0xffbc4749), '/my_cart', context),
+            _buildFooterIcon(Icons.person, const Color(0xffbc4749), '/profile', context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFooterIcon(IconData icon, Color iconColor, String routePath, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, routePath);
+      },
+      child: CircleAvatar(
+        backgroundColor: Colors.white,
+        child: Icon(
+          icon,
+          color: iconColor,
+        ),
       ),
     );
   }
 }
 
-
 class ProductCard extends StatelessWidget {
   final String name;
   final String weight;
   final String price;
-  final String imagePath; // Image path ajouté ici
+  final String imagePath;
   final VoidCallback onAdd;
 
   ProductCard({
     required this.name,
     required this.weight,
     required this.price,
-    required this.imagePath, // Assurez-vous que cette variable est reçue
+    required this.imagePath,
     required this.onAdd,
   });
 
@@ -257,9 +245,9 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color:Color(0xFFF2E8CF),
+        color: Color(0xFFA7C957),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color:Color(0xFFF2E8CF), width: 1),
+        border: Border.all(color: Color(0xFFA7C957), width: 1),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -267,7 +255,7 @@ class ProductCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              imagePath, // Utilisation de la variable imagePath
+              imagePath,
               height: 80,
               fit: BoxFit.cover,
             ),
@@ -278,20 +266,18 @@ class ProductCard extends StatelessWidget {
               name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 8, // Remplacez 16 par la taille de texte que vous souhaitez
+                fontSize: 12,
               ),
               textAlign: TextAlign.center,
             ),
-
           ),
           Text("$weight - $price"),
           IconButton(
-            icon: Icon(Icons.add, color: Color(0xFFA7C957)),
-            onPressed: onAdd, // Appel de l'action
+            icon: Icon(Icons.add, color: Colors.white),
+            onPressed: onAdd,
           ),
         ],
       ),
     );
   }
 }
-

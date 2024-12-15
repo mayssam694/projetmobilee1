@@ -1,4 +1,4 @@
-name: waste2green
+name: paymenet
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -30,7 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_stripe: ^11.3.0
+  flutter_stripe_web: ^6.3.0
+  http: ^ 1.2.2
+  provider: ^6.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,15 +64,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/profile.jpg
     - assets/image_1.png
     - assets/image_2.jpg
     - assets/image_3.jpg
     - assets/image_4.jpg
     - assets/image_5.jpg
-    - assets/image_7.png
     - assets/image_6.jpg
-    - assets/image_8.png
-    - assets/image_9.png
+    - assets/images/discount.jpg
+    - assets/images/shipping.jpg
+    - assets/images/exclusive.jpg
+    - assets/images/voucher.jpg
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

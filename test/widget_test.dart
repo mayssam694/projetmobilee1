@@ -1,30 +1,31 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:waste2green/main.dart';
+import 'package:paymenet/main.dart';  // Import your main.dart
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('ProfilePage navigates to PaymentPage when tapping on Payment Details', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const Waste2GreenApp());  // Use Waste2GreenApp as the entry point
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify ProfilePage is loaded.
+    expect(find.text('Profile Page'), findsOneWidget);  // Adjust according to actual content
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Tap the 'Payment Details' ListTile.
+    await tester.tap(find.text('Payment Details'));
+    await tester.pumpAndSettle();  // Wait for the navigation to settle
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that PaymentPage is displayed after navigation.
+    expect(find.text('Payment Page'), findsOneWidget);  // Adjust according to actual content
+  });
+
+  testWidgets('PaymentPage shows the correct content', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const Waste2GreenApp());  // Use Waste2GreenApp as the entry point
+
+    // Tap the 'Payment Details' ListTile to navigate to PaymentPage.
+    await tester.tap(find.text('Payment Details'));
+    await tester.pumpAndSettle(); // Wait for navigation to finish
+
+    // Verify that the PaymentPage shows the correct content (for example, a payment form).
+    expect(find.text('Payment Form and Details'), findsOneWidget);  // Adjust based on actual content
   });
 }

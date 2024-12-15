@@ -1,13 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'BuyPage.dart';
-import 'CartPage.dart';
-import 'ProfilePage.dart';
-import  'Rewards.dart';
+import 'my_cart.dart';
+import 'profile_page.dart';
+import 'rewards_page.dart';
 import 'SellPage.dart';
-
-
-
 
 
 class OrderTracking extends StatelessWidget {
@@ -67,7 +64,7 @@ class OrderTracking extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CartPage()),
+                    MaterialPageRoute(builder: (context) => MyCart()),
                   );
                 },
               ),
@@ -246,7 +243,7 @@ class OrderTracking extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Rewards()),
+                  MaterialPageRoute(builder: (context) => RewardsPage()),
                 );
               },
             ),
@@ -273,7 +270,7 @@ class OrderTracking extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
+                  MaterialPageRoute(builder: (context) => MyCart()),
                 );
               },
             ),
